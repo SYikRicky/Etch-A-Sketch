@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="js-file.js" defer></script>
+    <title>Etch A Sketch</title>
+</head>
+<body>
+    <h1>Etch A Sketch</h1>
+    <div id="btnContainer">
+        <button id="reset">Reset</button>
+        <button id="setting">Setting</button>
+    </div>
+    <div class="setting-popup", id="setting-popup">
+        <div class="heading">
+            <div class="title">
+                <img src="./image/settings-icon.svg">
+                <p>Setting</p>
+            </div>
+            <button class="close-button">&times;</button>
+        </div>
+        <div class="content">
+            <p>Slide to your destinated dimension. <p>(100x100 is the maximum)</p></p> 
+            <div class="slide-container">
+                <div class="min-value">0</div>
+                <input type="range" class="slider-dimension" id="slider-dimension" min="1" max="100">
+                <div class="max-value">100</div>
+            </div>
+            
+
+            <button class="save-button">Save</button>
+        </div>
+    </div>
+    <div id="overlay"></div>
+    <div id="gridContainer"></div>
+</body>
+</html>
