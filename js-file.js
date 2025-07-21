@@ -1,38 +1,43 @@
 var style = window.getComputedStyle(document.body);
 
+const initializeDrawingProperties = () => {
+    const grids = document.querySelectorAll(".grid");
+
+    let isMouseDown = false;
+    document.addEventListener("mousedown", () => {
+        isMouseDown = true;
+    });
+    document.addEventListener("mouseup", () => {
+        isMouseDown = false;
+    });
+    grids.forEach(grid => {
+        grid.addEventListener("click", (e) => {
+            e.target.style.backgroundColor = "black";
+        });
+
+        grid.addEventListener("mouseover", (e) => {
+            if(isMouseDown) {
+                e.target.style.backgroundColor = "black";
+            }
+        });
+    });
+};
+
 const makeRows = (rows, cols) => {
     const container = document.querySelector("#gridContainer");
     for (let i = 0; i < (rows * cols); i++) {
         const grid = document.createElement("div");
         container.appendChild(grid).className = "grid";
     }
+    initializeDrawingProperties();
 };
 
 makeRows(16,16);
 
-const grids = document.querySelectorAll(".grid");
-
-let isMouseDown = false;
-
-document.addEventListener("mousedown", () => {
-    isMouseDown = true;
-});
-
-document.addEventListener("mouseup", () => {
-    isMouseDown = false;
-});
-
-grids.forEach(grid => {
-    grid.addEventListener("mouseover", (e) => {
-        if(isMouseDown) {
-            e.target.style.backgroundColor = "black";
-        }
-    });
-});
-
 const resetBtn = document.querySelector("#reset");
 
 resetBtn.addEventListener("click", () => {
+    const grids = document.querySelectorAll(".grid");
     grids.forEach(grid => {
         grid.style.backgroundColor = style.getPropertyPriority("--lavender-web");
     })
@@ -80,8 +85,10 @@ const settingSaveBtn = document.querySelector(".setting-popup .save-button");
 
 settingSaveBtn.addEventListener("click", () => {
     const container = document.querySelector("#gridContainer");
+    const gridNumber = inputSlideValue.value;
+    container.style.setProperty("--grid-number", gridNumber);
     container.replaceChildren();
-    makeRows(inputSlideValue.value, inputSlideValue.value);
+    makeRows(gridNumber, gridNumber);
     
     const popup = document.querySelector(".setting-popup.active");
     closePopup(popup);
