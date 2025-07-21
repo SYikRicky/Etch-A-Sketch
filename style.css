@@ -140,7 +140,6 @@ body {
     padding: 10px 15px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .slide-container {
@@ -148,12 +147,12 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin-bottom: 15px;
 }
 
 .slide-container .slider-dimension {
     width: 70%;
 }
-
 
 #overlay {
     position: fixed;

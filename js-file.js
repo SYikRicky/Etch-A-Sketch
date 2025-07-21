@@ -63,3 +63,27 @@ const closePopup = (popup) => {
     popup.classList.remove("active");
     overlay.classList.remove("active");
 };
+
+const slideValue = document.querySelector(".slide-value");
+const inputSlideValue = document.querySelector(".slide-container input");
+
+inputSlideValue.value = 16;
+let value = inputSlideValue.value;
+slideValue.textContent = `${value} x ${value}`;
+
+inputSlideValue.oninput = () => {
+    let value = inputSlideValue.value;
+    slideValue.textContent = `${value} x ${value}`;
+};
+
+const settingSaveBtn = document.querySelector(".setting-popup .save-button");
+
+settingSaveBtn.addEventListener("click", () => {
+    const container = document.querySelector("#gridContainer");
+    container.replaceChildren();
+    makeRows(inputSlideValue.value, inputSlideValue.value);
+    
+    const popup = document.querySelector(".setting-popup.active");
+    closePopup(popup);
+});
+
